@@ -108,14 +108,15 @@ const ChartView = () => {
       const buyCount = data?.buyCount ?? 0;
       const sellCount = data?.sellCount ?? 0;
       const swapCount = buyCount + sellCount;
-      // buyCount + sellCount
-      const totalSwaps = {
-        time,
-        value: String(swapCount),
-      };
 
-      const totalAdd = { time, value: String(data?.stakeCount ?? 0) };
-      const totalWithdraw = { time, value: String(data?.withdrawCount ?? 0) };
+// buyCount + sellCount
+const totalSwaps = {
+  time,
+  value: String(swapCount),
+};
+
+const totalAdd = { time, value: String(data?.stakeCount ?? 0) };
+const totalWithdraw = { time, value: String(data?.withdrawCount ?? 0) };
 
       return {
         volume,
@@ -169,22 +170,6 @@ const ChartView = () => {
         },
         unit: chartValueUnit,
       },
-      Liquidity: {
-        values: {
-          allTime: allTimeLiquidityData,
-          week: weekLiquidityData,
-        },
-        unit: chartValueUnit,
-        type: 'line',
-      },
-      Pooled: {
-        values: {
-          allTime: allTimeTotalPooledData,
-          week: weekTotalPooledData,
-        },
-        unit: 'ᚱ',
-        type: 'line',
-      },
       Swap: {
         values: {
           allTime: allTimeTotalSwapsData,
@@ -202,6 +187,22 @@ const ChartView = () => {
           allTime: allTimeTotalWithdrawData,
           week: weekTotalWithdrawData,
         },
+      },
+      Liquidity: {
+        values: {
+          allTime: allTimeLiquidityData,
+          week: weekLiquidityData,
+        },
+        unit: chartValueUnit,
+        type: 'line',
+      },
+      Pooled: {
+        values: {
+          allTime: allTimeTotalPooledData,
+          week: weekTotalPooledData,
+        },
+        unit: 'ᚱ',
+        type: 'line',
       },
     };
   }, [rtStats, rtStatsLoading, initialChartData, chartValueUnit, getUSDPrice]);

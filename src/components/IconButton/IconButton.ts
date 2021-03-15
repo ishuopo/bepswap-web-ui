@@ -3,6 +3,11 @@ import { palette } from 'styled-theme';
 
 export const IconButton = styled.button`
   position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: none;
   background-color: transparent;
   margin: 0;
@@ -21,7 +26,6 @@ export const IconButton = styled.button`
   }
 
   svg {
-    margin-top: 2px;
   }
   > * {
     stroke: ${palette('text', 0)};

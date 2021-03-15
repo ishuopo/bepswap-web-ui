@@ -1,8 +1,11 @@
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { transparentize } from 'polished';
 import styled from 'styled-components';
 import { palette, size, key } from 'styled-theme';
 
+import { IconButton } from 'components/IconButton';
+
 import { media } from 'helpers/styleHelper';
+
 
 export const StyledAlertWrapper = styled.div`
   display: flex;
@@ -18,10 +21,16 @@ export const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
   z-index: 1000;
   width: 100vw;
   height: ${size('headerHeight', '70px')};
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-image: ${({ theme }) =>
+    `linear-gradient(180deg, ${transparentize(
+      0.8,
+      '#23DCC8',
+    )} 0%, ${transparentize(1, theme.palette.background[0])} 100%)`};
 
   padding: 0 10px;
   ${media.sm`
@@ -31,8 +40,6 @@ export const StyledHeader = styled.div`
   > *:last-child {
     margin-right: 0;
   }
-  background-color: ${palette('background', 0)};
-
   /* HACK: this override hack should be in the 
   dropdown component itself */
   .ant-dropdown-link {
@@ -68,6 +75,14 @@ export const StyledHeader = styled.div`
 export const HeaderCenterWrapper = styled.div`
   display: flex;
   align-items: center;
+
+  padding: 8px 10px;
+  border: 1px solid ${palette('gray', 0)};
+  border-radius: 4px;
+
+  .label-wrapper {
+    padding: 0;
+  }
 `;
 
 export const HeaderTools = styled.div`
@@ -76,24 +91,37 @@ export const HeaderTools = styled.div`
   align-items: center;
 `;
 
-export const LogoWrapper = styled.div`
-  display: none;
-  height: 24px;
-  margin-right: 4px;
-
-  ${media.md`
-    margin-right: 20px;
-    display: flex;
-  `}
-  svg {
-    height: 24px;
-  }
+export const HeaderLeft = styled.div`
+  display: flex;
+  align-items: center;
 
   .ant-dropdown-link {
     .anticon-down {
       margin-left: 8px;
     }
   }
+`;
+
+export const HeaderLeftActions = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const LogoWrapper = styled.div`
+  display: none;
+  height: 24px;
+  margin-right: 4px;
+
+  svg {
+    width: 180px;
+    height: 24px;
+  }
+
+  ${media.md`
+    margin-right: 20px;
+    display: flex;
+  `}
 `;
 
 export const HeaderTitle = styled.p`
@@ -153,12 +181,11 @@ export const HeaderActionButtons = styled.div`
   }
 
   .ant-dropdown-link {
-    margin: 0 8px;
+    margin: 0 4px;
     display: none;
 
     &.baseprice-selector {
       display: flex;
-      margin-right: 12px;
 
       .currency-icon-container {
         display: none;
@@ -203,18 +230,6 @@ export const ConnectionMenuItem = styled.div`
   }
 `;
 
-export const PopoverContent = styled.div`
-  width: 300px;
-  font-size: '11px';
-  color: ${palette('text', 0)};
-`;
-
-export const TooltipContent = styled.div`
-  font-size: '12px';
-  color: ${palette('text', 0)};
-`;
-
-export const PopoverIcon = styled(InfoCircleOutlined)`
-  color: ${palette('error', 0)};
-  margin: 0 10px;
+export const TxIconButton = styled(IconButton)`
+  margin: 0 4px;
 `;
